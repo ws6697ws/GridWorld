@@ -1,6 +1,6 @@
-/* ÖĞ¼¶ÊµÑµStage1
- * ¼òÒ×¼ÆËãÆ÷
- * Author£ºÎâ¿¡Î©
+/* ä¸­çº§å®è®­Stage1
+ * ç®€æ˜“è®¡ç®—å™¨
+ * Authorï¼šå´ä¿ŠæƒŸ
  */
 
 import java.awt.*;
@@ -13,51 +13,51 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.text.DecimalFormat;  
 class EasyCalculator extends JFrame implements ActionListener {
-	//³ÉÔ±±äÁ¿
+	//æˆå‘˜å˜é‡
 	DecimalFormat  df   = new DecimalFormat("######0.00");   
 	JTextField input1;
 	JTextField input2;
 	JTextField display_operator;
 	JTextField display_result;
 	JTextField equal;
-	//²Ù×÷·ûÊı×é
+	//æ“ä½œç¬¦æ•°ç»„
 	String[] operators = {"+", "-", "*", "/", "ok"};
 	JButton ok;
 	JButton[] operator_b = new JButton[operators.length];	
 	String op = "+";
 	double number = 0;
-	//²Ù×÷·ûÕıÔò±í´ïÊ½
+	//æ“ä½œç¬¦æ­£åˆ™è¡¨è¾¾å¼
 	String str = "^(\\-|\\+)?\\d+(\\.\\d+)?$";
 	
-	//¹¹Ôìº¯Êı
+	//æ„é€ å‡½æ•°
 	public EasyCalculator() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container c = this.getContentPane();
-		//³õÊ¼»¯¼ÆËãÆ÷µÄUI½çÃæÈİÆ÷
+		//åˆå§‹åŒ–è®¡ç®—å™¨çš„UIç•Œé¢å®¹å™¨
 		
 		JPanel head = new JPanel(new GridLayout(2, 5, 10, 10));
-		//×óÓÒÔËËãÁ¿µÄÊäÈë¿ò
+		//å·¦å³è¿ç®—é‡çš„è¾“å…¥æ¡†
 		input1 = new JTextField();
 		input2 = new JTextField();
 		
-		//²Ù×÷·û¡¢¼ÆËã½á¹ûºÍµÈÓÚºÅµÄÏÔÊ¾¿ò
+		//æ“ä½œç¬¦ã€è®¡ç®—ç»“æœå’Œç­‰äºå·çš„æ˜¾ç¤ºæ¡†
 		display_operator = new JTextField("+");
 		display_result = new JTextField();
 		equal = new JTextField("=");
 		
-		//Î»ÖÃÈ«²¿ÉèÎªË®Æ½¾ÓÖĞ
+		//ä½ç½®å…¨éƒ¨è®¾ä¸ºæ°´å¹³å±…ä¸­
 		equal.setHorizontalAlignment(JTextField.CENTER);
 		input1.setHorizontalAlignment(JTextField.CENTER);
 		input2.setHorizontalAlignment(JTextField.CENTER);
 		display_operator.setHorizontalAlignment(JTextField.CENTER);
 		display_result.setHorizontalAlignment(JTextField.CENTER);
 		
-		//ÉèÖÃ±ß¿ò
+		//è®¾ç½®è¾¹æ¡†
 		equal.setBorder(new EmptyBorder(1, 1, 1, 1));
 		display_operator.setBorder(new EmptyBorder(1, 1, 1, 1));
 		display_result.setBorder(new EmptyBorder(1, 1, 1, 1));
 		
-		//½«ÉèÖÃºÃµÄ¿Ø¼ş¼ÓÈëµ½UIÈİÆ÷ÖĞ
+		//å°†è®¾ç½®å¥½çš„æ§ä»¶åŠ å…¥åˆ°UIå®¹å™¨ä¸­
 		head.add(input1);
 		head.add(display_operator);
 		head.add(input2);
@@ -65,29 +65,29 @@ class EasyCalculator extends JFrame implements ActionListener {
 		head.add(display_result);
 		c.add(head);
 		
-		//¼ÓÈë²Ù×÷·û°´Å¥
+		//åŠ å…¥æ“ä½œç¬¦æŒ‰é’®
 		for (int i = 0; i < operators.length; i++) {
 			operator_b[i] = new JButton(operators[i]);
 			operator_b[i].addActionListener(this);
 			head.add(operator_b[i]);
 		}
 		
-		//ÉèÖÃ´óĞ¡¡¢Ãû×ÖºÍ¿É¼û¶È
+		//è®¾ç½®å¤§å°ã€åå­—å’Œå¯è§åº¦
 		this.setTitle("Easy Caculator");
 		this.setVisible(true);
 		this.setSize(400, 200);
 	}
 	
-	//¼ÆËãÆ÷Ö÷º¯Êı
+	//è®¡ç®—å™¨ä¸»å‡½æ•°
 	public static void main(String[] args) {
 		new EasyCalculator();
 	}
 	
-	//¶¯×÷ÅĞ¶ÏÓëÑ¡Ôñº¯Êı
+	//åŠ¨ä½œåˆ¤æ–­ä¸é€‰æ‹©å‡½æ•°
 	public void actionPerformed(ActionEvent e) {
 		Object ob = e.getSource();
 		String label = e.getActionCommand();
-		//ÈôÊäÈëÔËËã·ûÎªµÈºÅÊ±£¬Êä³ö½á¹û£¬·ñÔò¼ÌĞø½øĞĞÏàÓ¦µÄ¼ÆËã
+		//è‹¥è¾“å…¥è¿ç®—ç¬¦ä¸ºç­‰å·æ—¶ï¼Œè¾“å‡ºç»“æœï¼Œå¦åˆ™ç»§ç»­è¿›è¡Œç›¸åº”çš„è®¡ç®—
 		if (ob == operator_b[operators.length-1] ) {
 			handleOut();
 		} else {
@@ -95,20 +95,20 @@ class EasyCalculator extends JFrame implements ActionListener {
 		}
         }
 	
-	//²Ù×÷·û´¦Àíº¯Êı
+	//æ“ä½œç¬¦å¤„ç†å‡½æ•°
 	public void handleOperator(String label) {
 		op = label;		
 		display_operator.setText(op);        
 	}
 	
-	//½á¹û¼ÆËãº¯Êı
+	//ç»“æœè®¡ç®—å‡½æ•°
 	public void handleOut() {
-	  //¼ìÑéÊäÈë¿òÖĞµÄ×óÓÒÔËËãÁ¿ÊÇ·ñ·ûºÏÊµÊıµÄ¸ñÊ½
+	  //æ£€éªŒè¾“å…¥æ¡†ä¸­çš„å·¦å³è¿ç®—é‡æ˜¯å¦ç¬¦åˆå®æ•°çš„æ ¼å¼
 	  Pattern p = Pattern.compile(str);
 	  Matcher m1 = p.matcher(input1.getText());
 	  Matcher m2 = p.matcher(input2.getText());
 	  if (m1.matches() && m2.matches())	{	
-		//¸ù¾İÔËËã·ûµÄÀàĞÍ£¬Ö´ĞĞÏàÓ¦µÄ¼ÆËã²Ù×÷
+		//æ ¹æ®è¿ç®—ç¬¦çš„ç±»å‹ï¼Œæ‰§è¡Œç›¸åº”çš„è®¡ç®—æ“ä½œ
 		if (op== "+") {
 			number = Double.valueOf(input1.getText()) + Double.valueOf(input2.getText());		
 		} else if (op == "-") {
@@ -116,7 +116,7 @@ class EasyCalculator extends JFrame implements ActionListener {
 		} else if (op== "*") {
 			number = Double.valueOf(input1.getText()) * Double.valueOf(input2.getText());
 		} 
-		//ÈôÔËËã·ûÎª³ıºÅÊ±£¬»¹Òª¶Ô³ıÊıÊÇ·ñÎª0½øĞĞ¼ìÑé£¬Èç¹ûÎª0£¬Å×³ö³ıÁã´íÎó
+		//è‹¥è¿ç®—ç¬¦ä¸ºé™¤å·æ—¶ï¼Œè¿˜è¦å¯¹é™¤æ•°æ˜¯å¦ä¸º0è¿›è¡Œæ£€éªŒï¼Œå¦‚æœä¸º0ï¼ŒæŠ›å‡ºé™¤é›¶é”™è¯¯
 		else if (op== "/") {
 			 if (String.valueOf(df.format(Double.valueOf(input2.getText()))).equals("0.00") && op.equals("/")) {
 					System.out.println("error:can't divide zero");
@@ -129,7 +129,7 @@ class EasyCalculator extends JFrame implements ActionListener {
 		}
 		display_result.setText(String.valueOf(df.format(number)));	
 	  } 
-	  //ÈôÈÎÒâÔËËãÁ¿²»·ûºÏÕıÔò¸ñÊ½Ê±£¬Å×³ö¸ñÊ½²»·û´íÎó
+	  //è‹¥ä»»æ„è¿ç®—é‡ä¸ç¬¦åˆæ­£åˆ™æ ¼å¼æ—¶ï¼ŒæŠ›å‡ºæ ¼å¼ä¸ç¬¦é”™è¯¯
 	  else {
 		System.out.println("error:input must be numbers");
 		input1.setText("0.0");
